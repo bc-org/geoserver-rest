@@ -2,6 +2,7 @@ import os
 from typing import Optional
 
 import requests
+from requests import HTTPError
 
 from .Calculation_gdal import raster_value
 from .Style import catagorize_xml, classified_xml, coverage_style_xml, outline_only_xml
@@ -226,8 +227,11 @@ class Geoserver:
                 )
 
             r = requests.get(url, auth=(self.username, self.password))
-            return r.json()
+            r.raise_for_status()
 
+            return r.json()
+        except HTTPError as e:
+            return "get_layer error: {}".format(str(e))
         except Exception as e:
             return "get_layer error: {}".format(e)
 
