@@ -595,7 +595,7 @@ class Geoserver:
         database_connection = (
             "<dataStore>"
             "<name>{0}</name>"
-            "<Expose primary keys>{1}</Expose primary keys>"
+            "<exposePrimaryKeys>{1}</exposePrimaryKeys>"
             "<connectionParameters>"
             "<host>{2}</host>"
             "<port>{3}</port>"
